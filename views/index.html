@@ -7,7 +7,18 @@
 	<link rel="stylesheet" type="text/css" href="/css/site.css">
 </head>
 <body>
-	<ui-view></ui-view>
+	<div ng-controller="GlobalController as nav">
+		<div layout="row" layout-padding class="bg-dark-blue nav-dark" id="nav" layout-align="space-between center">
+	<div flex="70">
+		<md-button class="nav-but">Home</md-button>
+	    <md-button class="nav-but">Add a Book</md-button>
+	</div>
+	<div class="nav-buttons">
+	    <md-button class="md-raised md-primary" id="prim">Login</md-button>
+	    <md-button class="md-raised md-warn" id="prim2">Register</md-button>
+	</div>
+		<ui-view></ui-view>
+	</div>
 	<!-- Ext Libs -->
 	<script src="angular/angular.min.js"></script>
 	<script src="angular-ui-router/release/angular-ui-router.min.js"></script>
@@ -20,5 +31,6 @@
 	<script src="/javascript/services/HomeFactory.js"></script>
 	<!-- Controllers -->
 	<script src="/javascript/controllers/HomeController.js"></script>
+	<script src="/javascript/controllers/GlobalController.js"></script>
 </body>
 </html>

@@ -3,6 +3,10 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var app = express();
 var port = process.env.PORT || 3000;
+var mongoose = require('mongoose');
+require('./model/User');
+require('./model/Book');
+mongoose.connect('mongodb://localhost/BookApp');
 
 
 app.set('views', path.join(__dirname, 'views'));
@@ -21,10 +25,16 @@ app.set('view options', {
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
+var bookRoutes = require('./routes/bookRoutes');
+var userRoutes = require('./routes/userRoutes');
+
 //on homepage load, render the index page
 app.get('/', function(req, res) {
 	res.render('index');
 });
+
+app.use('/api/user', userRoutes);
+app.use('/api/book', bookRoutes);
 
 var server = app.listen(port, function() {
 	var host = server.address().address;
