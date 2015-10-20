@@ -1,2 +1,33 @@
 <div ng-controller="HomeController as vm">
+  <div ng-repeat="b in vm.books">
+    <md-content class="md-padding">
+      <md-card>
+        <img ng-src="{{b.img}}" class="md-card-image" alt="{{b.title}}" title="{{b.title}}">
+        <md-card-content>
+          <h2 class="md-title">{{b.title}}</h2>
+          <div layout="row">
+            <div flex="20">
+              {{b.author}}
+            </div>
+            <div flex flex-offset="20">
+              {{b.genre}}
+            </div>
+          </div>
+          <p>
+            {{b.desc}}
+          </p>
+          <div layout="row">
+            <div flex flex-offset="80">
+              Posted in: {{b.tags}}
+            </div>
+          </div>
+        </md-card-content>
+        <div class="md-actions" layout="row" layout-align="end center">
+          <md-button>Favorite</md-button>
+          <md-button>Action 2</md-button>
+        </div>
+      </md-card>
+      <br/>
+    </md-content>
+  </div>
 </div>
