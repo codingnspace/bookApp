@@ -1,0 +1,18 @@
+<md-content >
+  <form ng-submit="nav.loginUser()">
+  <md-input-container>
+    <label>Username</label>
+    <input ng-model="nav.user.username" required>
+  </md-input-container><br>
+  <md-input-container>
+    <label>Password</label>
+    <input ng-model="nav.user.password" type="password" required>
+  </md-input-container><br>
+ <div layout="row">
+   <div flex="80">
+   </div>
+ <md-button class="md-raised md-primary" id="prim" type="submit" ng-disabled=" !nav.user.username || !nav.user.password" >Login</md-button>
+ <md-button class="md-raised md-warn" id="prim2"  ui-sref="Register">Register</md-button>
+</div>
+</form>
+</md-content>

@@ -9,6 +9,12 @@
 		}).state('Create',{
 			url: '/create',
 			templateUrl: 'views/create.html'
+		}).state("Register",{
+			url: '/register',
+			templateUrl: 'views/register.html'
+		}).state("Login",{
+			url: '/login',
+			templateUrl: '/views/login.html'
 		});
 		$urlRouterProvider.otherwise('/');
 	}

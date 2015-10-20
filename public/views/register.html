@@ -1,0 +1,28 @@
+  <md-content >
+    <form ng-submit="nav.registerUser()">
+    <md-input-container>
+      <label>Username</label>
+      <input ng-model="nav.user.username" required>
+    </md-input-container><br>
+    <md-input-container>
+      <label>Email</label>
+      <input ng-model="nav.user.email" type="email" required>
+    </md-input-container><br>
+    <md-input-container>
+      <label>Password</label>
+      <input ng-model="nav.user.password" type="password" required>
+    </md-input-container><br>
+    <md-input-container>
+      <label>Confirm Password</label>
+      <input ng-model="nav.user.confirmPassword" required type="password" required>
+    </md-input-container><br>
+  <div ng-show="nav.user.password && nav.user.confirmPassword && !(nav.user.password === nav.user.confirmPassword)"
+   style="color: red">Your passwords must match.</div>
+   <div layout="row">
+     <div flex="80">
+     </div>
+   <md-button class="md-raised md-primary" id="prim" type="submit" ng-disabled="!nav.user.email || !nav.user.username || !nav.user.password || !(nav.user.password === nav.user.confirmPassword)" >Register</md-button>
+   <md-button class="md-raised md-warn" id="prim2"  ui-sref="Home">Cancel</md-button>
+ </div>
+</form>
+ </md-content>

@@ -14,8 +14,8 @@
 	  <md-button class="nav-but" ui-sref="Create">Add a Book</md-button>
 	</div>
 	<div class="nav-buttons">
-	    <md-button class="md-raised md-primary" id="prim">Login</md-button>
-	    <md-button class="md-raised md-warn" id="prim2">Register</md-button>
+	    <md-button class="md-raised md-primary" id="prim" ui-sref="Login">Login</md-button>
+	    <md-button class="md-raised md-warn" id="prim2" ui-sref="Register">Register</md-button>
 	</div>
 </div>
 
@@ -31,6 +31,7 @@
 	<script src="/javascript/app.js"></script>
 	<!-- Factories -->
 	<script src="/javascript/services/HomeFactory.js"></script>
+	<script src="/javascript/services/UserFactory.js"></script>
 	<!-- Controllers -->
 	<script src="/javascript/controllers/HomeController.js"></script>
 	<script src="/javascript/controllers/GlobalController.js"></script>
