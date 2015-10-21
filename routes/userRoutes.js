@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var router = express.Router();
 var User = mongoose.model('User');
 var Book =  mongoose.model('Book');
+var passport = require('passport');
 
 
 router.post('/register', function(req, res, next) {
@@ -11,7 +12,7 @@ router.post('/register', function(req, res, next) {
   user.save(function(err, result) {
     if(err) return next(err);
     if(!result) return next("There was an issue registering that user.");
-    res.send(result);
+    res.send(result.createToken());
   });
 });
 
@@ -37,14 +38,18 @@ router.get('/profile/:id', function(req,res,next){
 });
 
 router.post('/login', function(req, res, next) {
-  var username = req.body.username.toLowerCase();
-  User.findOne({username: username}, function(err, user) {
+  passport.authenticate('local', function(err,user){
     if(err) return next(err);
-    if(!user) return next("User " + req.body.username + " does not exist in the database");
-    var correctPassword = user.checkPassword(req.body.password);
-    if(!correctPassword) return next("Incorrect username and password combination.");
     res.send(user.createToken());
-  });
+  })(req,res,next);
+  // var username = req.body.username.toLowerCase();
+  // User.findOne({username: username}, function(err, user) {
+  //   if(err) return next(err);
+  //   if(!user) return next("User " + req.body.username + " does not exist in the database");
+  //   var correctPassword = user.checkPassword(req.body.password);
+  //   if(!correctPassword) return next("Incorrect username and password combination.");
+  //   res.send(user.createToken());
+  // });
 });
 
 module.exports = router;

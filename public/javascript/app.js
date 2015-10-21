@@ -18,6 +18,9 @@
 		}).state('Profile',{
 			url: '/profile/:id',
 			templateUrl: 'views/profile.html'
+		}).state('Edit',{
+			url: '/edit/:BookId',
+			templateUrl: '/views/edit.html'
 		});
 		$urlRouterProvider.otherwise('/');
 	}

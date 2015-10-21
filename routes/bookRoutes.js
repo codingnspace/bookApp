@@ -21,6 +21,24 @@ router.post('/', auth, function(req, res, next) {
     });
 });
 
+router.get('/:id', function(req,res,next){
+  Book
+  .findOne({_id: req.params.id},
+    function(err,result){
+      if(err) return next(err);
+      res.send(req.book);
+
+    });
+});
+router.put('/:id', function(req,res,next){
+  Book.findOneAndUpdate({_id: req.params.id},req.body,
+  function(err,result){
+  if(err) return next(err);
+  if(!result) return next("Could not create the object. Please check all fields.");
+  res.send(result);
+});
+});
+
 router.get('/', function(req,res,next){
   Book
   .find({})

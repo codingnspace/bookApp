@@ -16,7 +16,22 @@ o.createBook = function(book){
 	return q.promise;
 };
 
+o.getBookById = function(BookId){
+	var q = $q.defer();
+	$http.get('/api/book/'+BookId)
+	.then(function(res){
+		q.resolve(res.data);
+	});
+	return q.promise;
+};
 
+o.putBook = function(book){
+	var q = $q.defer();
+	$http.put('/api/book/' + book._id, book).then(function(){
+        q.resolve();
+      });
+      return q.promise;
+    };
 
 o.getBooks = function(){
 	var q = $q.defer();
