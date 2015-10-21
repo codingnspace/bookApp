@@ -2,6 +2,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var router = express.Router();
 var User = mongoose.model('User');
+var Book =  mongoose.model('Book');
 
 
 router.post('/register', function(req, res, next) {
@@ -10,6 +11,27 @@ router.post('/register', function(req, res, next) {
   user.save(function(err, result) {
     if(err) return next(err);
     if(!result) return next("There was an issue registering that user.");
+    res.send(result);
+  });
+});
+
+
+// router.param('id', function(req,res,next,id){
+//   User.findOne({_id:id}, function(err,result){
+//     if(err) return next(err);
+//     if(!result) return next({err: "couldnt find it"});
+//     req.user = result;
+//     next();
+//   });
+// });
+
+router.get('/profile/:id', function(req,res,next){
+  Book
+  .find({addedBy: req.params.id})
+  //.select('addedBy')
+  .populate('addedBy', 'username')
+  .exec(function(err,result){
+    if(err) return next(err);
     res.send(result);
   });
 });

@@ -11,11 +11,16 @@
 		<div layout="row" layout-padding class="bg-dark-blue nav-dark" id="nav" layout-align="space-between center">
 	<div flex="70">
 		<md-button class=" nav-but"  ui-sref="Home">Home</md-button>
-	  <md-button class="nav-but" ui-sref="Create">Add a Book</md-button>
+	  <md-button class="nav-but" ng-show="nav.status.username" ui-sref="Create">Add a Book</md-button>
 	</div>
-	<div class="nav-buttons">
+	<div class="nav-buttons" ng-show="!nav.status.username">
 	    <md-button class="md-raised md-primary" id="prim" ui-sref="Login">Login</md-button>
 	    <md-button class="md-raised md-warn" id="prim2" ui-sref="Register">Register</md-button>
+	</div>
+	<div ng-show="nav.status.username">
+		<md-button class="md-raised md-warn" id="prim2" ui-sref="Profile({id: nav.status._id})" >Welcome {{nav.status.username}}</md-button>
+		<md-button class="md-raised md-warn" id="prim2" ng-click="nav.logout()">Logout</md-button>
+
 	</div>
 </div>
 
@@ -36,5 +41,6 @@
 	<script src="/javascript/controllers/HomeController.js"></script>
 	<script src="/javascript/controllers/GlobalController.js"></script>
 	<script src="/javascript/controllers/CreateBookController.js"></script>
+	<script src="/javascript/controllers/ProfileController.js"></script>
 </body>
 </html>

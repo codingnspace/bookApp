@@ -7,6 +7,18 @@
 	function UserFactory($http, $q) {
 		var o = {};
 
+		o.getUserBooks = function(id){
+			var q = $q.defer();
+			$http.get('/api/user/profile/' + id)
+			.then(function(res){
+				q.resolve(res.data);
+			});
+			return q.promise;
+		};
+
+
+
+
     o.registerUser = function(user) {
        var q = $q.defer();
        $http.post('/api/user/register', user).then(function(res) {
@@ -69,7 +81,15 @@
        o.status.username = user.username;
        o.status._id = user._id;
      }
+
+		 function getAuth(){
+			 return{
+				 headers: {
+					 Authorization: "Bearer " + localStorage.getItem('token'),
+				 }
+			 };
+		 }
      return o;
-     
+
   }
 })();

@@ -15,6 +15,9 @@
 		}).state("Login",{
 			url: '/login',
 			templateUrl: '/views/login.html'
+		}).state('Profile',{
+			url: '/profile/:id',
+			templateUrl: 'views/profile.html'
 		});
 		$urlRouterProvider.otherwise('/');
 	}

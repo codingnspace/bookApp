@@ -11,8 +11,9 @@
 
 vm.createBook = function(){
   HomeFactory.createBook(vm.newBook).then(function(res){
-    vm.newBook = res;
-    $state.go('Home');
+		$state.go('Home');
+}, function(res){
+		vm.newBook = res;
   });
 };
 	}

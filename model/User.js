@@ -7,6 +7,7 @@ var UserSchema = new mongoose.Schema({
   email: {required: true, unique: true, type: String, lowercase:true, tim: true},
   passwordHash: String,
   salt: String,
+  books: [{type: mongoose.Schema.Types.ObjectId, ref: 'Book'}],
   // joined: Date,
   // favs: Array,
   // added: Array,

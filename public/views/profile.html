@@ -1,6 +1,7 @@
-<div ng-controller="HomeController as vm">
-    <md-content class="md-padding" ng-repeat="b in vm.books" >
-      <md-card >
+<div ng-controller="ProfileController">
+  <div ng-repeat="b in vm.userBooks" >
+    <md-content class="md-padding" flex="35" flex-wrap>
+      <md-card>
         <img ng-src="{{b.img}}" class="md-card-image" alt="{{b.title}}" title="{{b.title}}">
         <md-card-content>
           <h2 class="md-title">{{b.title}}</h2>
@@ -13,13 +14,12 @@
             <!-- <div flex="20"> -->
               Genre: <i>{{b.genre}}</i>
             <!-- </div> -->
-            <p>
-              {{b.desc}}
-            </p>
           </div>
-
+          <p>
+            {{b.desc}}
+          </p>
           <div layout="row">
-            <div  >
+            <div flex >
               Posted in: {{b.tags}}<br>
               Added by: {{b.addedBy}}
             </div>
@@ -31,4 +31,5 @@
       </md-card>
       <br/>
     </md-content>
+  </div>
 </div>

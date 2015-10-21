@@ -12,3 +12,7 @@
 .nav-but{
   color:white;
 }
+
+md-content{
+  max-width: 35%;
+}
