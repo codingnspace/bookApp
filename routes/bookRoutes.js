@@ -10,6 +10,16 @@ var auth = jwt({
   userProperty: 'payload'
 });
 
+router.param('id', function(req,res,next,id){
+  console.log(id);
+  Book.findOne({_id: id}, function(err,result){
+    if(err) return next(err);
+    if(!result) return next({err: "couldnt find it"});
+    req.book = result;
+    next();
+  });
+});
+
 // Add a new book. user must be logged in
 router.post('/', auth, function(req, res, next) {
     var book = new Book(req.body);
@@ -21,6 +31,24 @@ router.post('/', auth, function(req, res, next) {
       result.addedBy = req.payload.username;
       res.send(result);
     });
+});
+
+router.post('/:id/review', auth, function(req,res,next){
+  console.log(req.body);
+  var review = {
+    reviewer: req.payload._id,
+    rating: req.body.reviews.rating,
+    comment: req.body.reviews.comment,
+    // postedOn: new Date();
+  };
+console.log(req.body.reviews.rating , "bookroutes");
+// console.log(req.book.reviews);
+ req.book.reviews.push(review);
+ // console.log(req.book.reviews);
+
+ req.book.save(function(err, result){
+   res.send(result);
+ });
 });
 
 router.get('/:id', function(req,res,next){
@@ -35,20 +63,26 @@ router.get('/:id', function(req,res,next){
 });
 
 // Find a particular book, edit and updated book
-router.put('/', function(req,res,next){
-  Book.update({_id: req.body.IDofBooktoEdit},req.body.EditedBook,
+router.put('/:id', function(req,res,next){
+  // console.log("made it to route file (for edit)");
+  Book.update({_id: req.params.id},req.body,
   function(err,result){
+    // console.log(req.body + "req.body");
+    // console.log(req.params.id + "reqparams.id");
   if(err) return next(err);
   if(!result) return next("Could not create the object. Please check all fields.");
+  // console.log(result);
   res.send(result);
 });
 });
 
 //Delete a book by it's id
-router.delete('/:id', function(req,res){
+router.delete('/:id', function(req,res,next){
   // console.log("I made it to the route file");
-  Book.remove().exec();
+  Book.remove({_id: req.params.id}, function(err,result){
+    if(err) return next(err);
   res.send();
+});
 });
 //Display all books
 router.get('/', function(req,res,next){
@@ -62,14 +96,6 @@ router.get('/', function(req,res,next){
   });
 });
 
-router.param('id', function(req,res,next,id){
-  Book.findOne({_id: id}, function(err,result){
-    if(err) return next(err);
-    if(!result) return next({err: "couldnt find it"});
-    req.book = result;
-    next();
-  });
-});
 
 
 

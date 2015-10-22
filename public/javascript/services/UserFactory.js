@@ -97,15 +97,15 @@
     //    o.status.username = user.username;
     //    o.status._id = user._id;
     //  }
-
-		 function getAuth(){
-			 return{
-				 headers: {
-					 Authorization: "Bearer " + localStorage.getItem('token'),
-				 }
-			 };
-		 }
-		 if(getToken()) setUser();
+		 // 
+		//  function getAuth(){
+		// 	 return{
+		// 		 headers: {
+		// 			 Authorization: "Bearer " + localStorage.getItem('token'),
+		// 		 }
+		// 	 };
+		//  }
+		//  if(getToken()) setUser();
      return o;
 
   }

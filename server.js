@@ -1,3 +1,6 @@
+if(process.env.NODE_ENV !== 'production'){
+	require('dotenv').load();
+}
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
@@ -8,9 +11,8 @@ var mongoose = require('mongoose');
 require('./model/User');
 require('./model/Book');
 require('./config/passport');
-mongoose.connect('mongodb://localhost/BookApp');
-
-
+//mongodb://pearl:1234@ds043714.mongolab.com:43714/bookapp
+mongoose.connect('process.env.MONGO_STRING');
 
 app.set('views', path.join(__dirname, 'views'));
 //set the view engine that will render HTML from the server to the client

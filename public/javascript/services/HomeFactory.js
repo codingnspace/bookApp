@@ -9,7 +9,7 @@
 
 o.createBook = function(book){
 	var q = $q.defer();
-	$http.post('/api/book', book, getAuth())
+	$http.post('/api/book', book)
 	.then(function(){
 		q.resolve();
 	});
@@ -25,11 +25,26 @@ o.getBookById = function(BookId){
 	return q.promise;
 };
 
-o.editBook = function(EditedBookObj){
+o.addReview = function(newReview, id) {
 	var q = $q.defer();
-	$http.put('/api/book', EditedBookObj)
+	console.log(newReview + "new review factory");
+	$http.post('/api/book/' +id + '/review', newReview)
 	.then(function(res){
+		// console.log("made it to the factory for addreview funct");
+		q.resolve(res.data);
+	});
+	return q.promise;
+};
+o.editBook = function(EditedBook){
+	var q = $q.defer();
+
+	$http.put('/api/book/'+EditedBook._id,EditedBook)
+	.then(function(res){
+		console.log("madee it to factory, made http req ");
+
         q.resolve(res.data);
+				// console.log(res.data + "res.data in factory");
+				console.log(EditedBook + "Edited book");
       });
       return q.promise;
     };
@@ -54,13 +69,13 @@ o.deleteBook = function(deletedBookId){
 };
 //o.addBook = function(boo)
 
-function getAuth(){
-	return{
-		headers: {
-			Authorization: "Bearer " + localStorage.getItem('token'),
-		}
-	};
-}
+// function getAuth(){
+// 	return{
+// 		headers: {
+// 			Authorization: "Bearer " + localStorage.getItem('token'),
+// 		}
+// 	};
+// }
 		return o;
 	}
 })();

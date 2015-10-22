@@ -13,13 +13,12 @@
             <!-- <div flex="20"> -->
               Genre: <i>{{vm.readmore.genre}}</i>
             <!-- </div> -->
-
           </div>
           <p>
             {{vm.readmore.desc}}
           </p>
           <div layout="row">
-            <div  >
+            <div>
               Posted in: {{vm.readmore.tags}}<br>
               Added by: {{vm.readmore.addedBy}}
             </div>
@@ -35,4 +34,30 @@
     </md-content>
 
     <h2>Reviews</h2>
+    <md-content>
+      <md-input-container>
+        <label>Rating</label>
+        <input ng-pattern="/^[0-9]$/" ng-model="vm.newReview.reviews.rating" >
+      </md-input-container><br>
+      <md-input-container>
+        <label>Review</label>
+        <textarea ng-model="vm.newReview.reviews.comment" ></textarea>
+      </md-input-container><br>
+      <md-button ng-click="vm.addReview(vm.newReview, vm.readmore._id)">Add Review</md-button>
+
+      <div ng-repeat="r in vm.readmore.reviews">
+        <p>
+          {{r.postedOn}}<br>
+          {{r.comment}}
+        </p>
+        <div layout="row">
+          <div flex="30">
+            Rating: {{r.rating}}
+          </div>
+          <div flex-offset="60">
+            Posted by: {{r.reviewer}}
+          </div>
+        </div>
+        </div>
+    </md-content>
 </div>

@@ -11,13 +11,13 @@ var BookSchema = new mongoose.Schema({
   tags: String,
   deleted: Date,
   reviews: [{
-    review: {
+    // review: {}
       // type:String,
       reviewer: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
       comment:String,
-      votes: Number,
+      rating: Number,
       postedOn: Date,
-    },
+    // },
   }],
 });
 

@@ -1,8 +1,8 @@
 (function() {
 	'use strict';
 	angular.module('app', ['ui.router','ngMaterial'])
-	.config(Config);
-	function Config($stateProvider, $urlRouterProvider) {
+	.config(config);
+	function config($stateProvider, $urlRouterProvider,$httpProvider) {
 		$stateProvider.state('Home',{
 			url: '/',
 			templateUrl: 'views/home.html'
@@ -19,12 +19,13 @@
 			url: '/profile/:id',
 			templateUrl: 'views/profile.html'
 		}).state('Edit',{
-			url: '/edit/:BookId',
+			url: '/edit/:id',
 			templateUrl: '/views/edit.html'
 		}).state('ReadMore',{
 			url: '/readmore/:id',
 			templateUrl: 'views/readmore.html'
 		});
 		$urlRouterProvider.otherwise('/');
+		$httpProvider.interceptors.push('Auth');
 	}
 })();
