@@ -41,6 +41,12 @@ router.put('/', function(req,res,next){
 });
 });
 
+//Delete a book by it's id
+router.delete('/:id', function(req,res){
+  console.log("I made it to the route file");
+  Book.remove().exec();
+  res.send();
+});
 //Display all books
 router.get('/', function(req,res,next){
   Book
@@ -53,8 +59,8 @@ router.get('/', function(req,res,next){
   });
 });
 
-router.param('id', function(req,res,next,BookId){
-  Book.findOne({_id: BookId}, function(err,result){
+router.param('id', function(req,res,next,id){
+  Book.findOne({_id: id}, function(err,result){
     if(err) return next(err);
     if(!result) return next({err: "couldnt find it"});
     req.book = result;

@@ -9,5 +9,13 @@
 HomeFactory.getBooks().then(function(res){
 	vm.books = res;
 });
+
+vm.deleteBook = function(bookToDelete){
+	HomeFactory.deleteBook(bookToDelete._id)
+	.then(function(){
+		console.log("Made it back to controller. about to splice!");
+		vm.books.splice(vm.books.indexOf(bookToDelete),1);
+	});
+};
 	}
 })();

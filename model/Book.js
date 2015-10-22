@@ -12,7 +12,7 @@ var BookSchema = new mongoose.Schema({
   deleted: Date,
   comments: [{
     comment: {type:String},
-    contributer: {type: mongoose.Schema.Types.OnjectId, ref: 'User'}
+    contributer: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
   }],
 });
 

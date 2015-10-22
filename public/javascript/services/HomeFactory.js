@@ -43,6 +43,15 @@ o.getBooks = function(){
 	return q.promise;
 };
 
+o.deleteBook = function(deletedBookId){
+	var q = $q.defer();
+	console.log("I made it to the factory");
+	$http.delete('/api/book/' + deletedBookId)
+	.then(function(){
+		q.resolve();
+	});
+	return q.promise;
+};
 //o.addBook = function(boo)
 
 function getAuth(){
