@@ -21,6 +21,9 @@
 		}).state('Edit',{
 			url: '/edit/:BookId',
 			templateUrl: '/views/edit.html'
+		}).state('ReadMore',{
+			url: '/readmore/:id',
+			templateUrl: 'views/readmore.html'
 		});
 		$urlRouterProvider.otherwise('/');
 	}

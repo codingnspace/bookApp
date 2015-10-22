@@ -17,14 +17,14 @@ router.post('/register', function(req, res, next) {
 });
 
 
-// router.param('id', function(req,res,next,id){
-//   User.findOne({_id:id}, function(err,result){
-//     if(err) return next(err);
-//     if(!result) return next({err: "couldnt find it"});
-//     req.user = result;
-//     next();
-//   });
-// });
+router.param('id', function(req,res,next,id){
+  User.findOne({_id:id}, function(err,result){
+    if(err) return next(err);
+    if(!result) return next({err: "couldnt find it"});
+    req.user = result;
+    next();
+  });
+});
 
 router.get('/profile/:id', function(req,res,next){
   Book

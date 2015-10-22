@@ -2,6 +2,8 @@ var express = require('express');
 var mongoose = require('mongoose');
 var router = express.Router();
 var Book = mongoose.model('Book');
+var User = mongoose.model('User');
+
 var jwt = require('express-jwt');
 var auth = jwt({
   secret: "PumkinEmpanada",
@@ -11,25 +13,26 @@ var auth = jwt({
 // Add a new book. user must be logged in
 router.post('/', auth, function(req, res, next) {
     var book = new Book(req.body);
-    // book.addedBy = req.book._id;
+    // book.addedBy = req.body._id;
     // book.deleted = null;
     book.save(function(err, result) {
       if(err) return next(err);
-      // if(!result) return next("Could not create the object. Please check all fields.");
-      // result.addedBy = req.payload.username;
+      if(!result) return next("Could not create the object. Please check all fields.");
+      result.addedBy = req.payload.username;
       res.send(result);
     });
 });
 
-// router.get('/:id', function(req,res,next){
-//   Book
-//   .findOne({_id: req.params.id},
-//     function(err,result){
-//       if(err) return next(err);
-//       res.send(req.book);
-//
-//     });
-// });
+router.get('/:id', function(req,res,next){
+  Book
+  .findOne({_id: req.params.id},
+    function(err,result){
+      if(err) return next(err);
+      console.log("I made it to the route file. about to send response");
+      res.send(req.book);
+      console.log("Sent response");
+    });
+});
 
 // Find a particular book, edit and updated book
 router.put('/', function(req,res,next){
@@ -43,7 +46,7 @@ router.put('/', function(req,res,next){
 
 //Delete a book by it's id
 router.delete('/:id', function(req,res){
-  console.log("I made it to the route file");
+  // console.log("I made it to the route file");
   Book.remove().exec();
   res.send();
 });
@@ -51,8 +54,8 @@ router.delete('/:id', function(req,res){
 router.get('/', function(req,res,next){
   Book
   .find({})
-  // .select('title desc genre author img tags addedBy')
-  // .populate('addedBy', 'username')
+  .select('title desc genre author img tags addedBy')
+  .populate('addedBy', 'username')
   .exec(function(err,result){
     if(err) return next(err);
     res.send(result);

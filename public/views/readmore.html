@@ -1,0 +1,38 @@
+<div ng-controller="ReadMoreController as vm">
+    <md-content class="md-padding" >
+      <md-card >
+        <img ng-src="{{vm.readmore.img}}" class="md-card-image" alt="{{vm.readmore.title}}" title="{{vm.readmore.title}}">
+        <md-card-content>
+          <h2 class="md-title">{{b.title}}</h2>
+          <div layout="row">
+            <!-- <div flex="20"> -->
+              Written by:<i>{{vm.readmore.author}}</i><br>
+            <!-- </div> -->
+          </div>
+          <div layout="row">
+            <!-- <div flex="20"> -->
+              Genre: <i>{{vm.readmore.genre}}</i>
+            <!-- </div> -->
+
+          </div>
+          <p>
+            {{vm.readmore.desc}}
+          </p>
+          <div layout="row">
+            <div  >
+              Posted in: {{vm.readmore.tags}}<br>
+              Added by: {{vm.readmore.addedBy}}
+            </div>
+          </div>
+        </md-card-content>
+        <div class="md-actions" layout="row" layout-align="end center">
+          <md-button ng-disabled="!nav.status.username">Favorite</md-button>
+          <md-button ui-sref="Edit({BookId: vm.readmore._id})">Edit</md-button>
+          <md-button ng-click="vm.deleteBook(b)">Delete</md-button>
+        </div>
+      </md-card>
+      <br/>
+    </md-content>
+
+    <h2>Reviews</h2>
+</div>

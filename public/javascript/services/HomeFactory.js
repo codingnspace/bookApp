@@ -18,7 +18,7 @@ o.createBook = function(book){
 
 o.getBookById = function(BookId){
 	var q = $q.defer();
-	$http.get('/api/book/'+BookId)
+	$http.get('/api/book/'+ BookId)
 	.then(function(res){
 		q.resolve(res.data);
 	});

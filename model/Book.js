@@ -10,9 +10,14 @@ var BookSchema = new mongoose.Schema({
   img: String,
   tags: String,
   deleted: Date,
-  comments: [{
-    comment: {type:String},
-    contributer: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+  reviews: [{
+    review: {
+      // type:String,
+      reviewer: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+      comment:String,
+      votes: Number,
+      postedOn: Date,
+    },
   }],
 });
 

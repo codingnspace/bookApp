@@ -8,14 +8,14 @@
 		var o = {};
 		o.status = {};
 
-		o.getUserBooks = function(id){
-			var q = $q.defer();
-			$http.get('/api/user/profile/' + id)
-			.then(function(res){
-				q.resolve(res.data);
-			});
-			return q.promise;
-		};
+		// o.getUserBooks = function(id){
+		// 	var q = $q.defer();
+		// 	$http.get('/api/user/profile/' + id)
+		// 	.then(function(res){
+		// 		q.resolve(res.data);
+		// 	});
+		// 	return q.promise;
+		// };
 
 
 
@@ -105,6 +105,7 @@
 				 }
 			 };
 		 }
+		 if(getToken()) setUser();
      return o;
 
   }
