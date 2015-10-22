@@ -10,8 +10,8 @@
 o.createBook = function(book){
 	var q = $q.defer();
 	$http.post('/api/book', book, getAuth())
-	.then(function(res){
-		q.resolve(res.data);
+	.then(function(){
+		q.resolve();
 	});
 	return q.promise;
 };
@@ -25,10 +25,11 @@ o.getBookById = function(BookId){
 	return q.promise;
 };
 
-o.putBook = function(book){
+o.editBook = function(EditedBookObj){
 	var q = $q.defer();
-	$http.put('/api/book/' + book._id, book).then(function(){
-        q.resolve();
+	$http.put('/api/book', EditedBookObj)
+	.then(function(res){
+        q.resolve(res.data);
       });
       return q.promise;
     };

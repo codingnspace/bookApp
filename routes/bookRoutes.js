@@ -8,30 +8,32 @@ var auth = jwt({
   userProperty: 'payload'
 });
 
+// Add a new book. user must be logged in
 router.post('/', auth, function(req, res, next) {
-
     var book = new Book(req.body);
-    book.addedBy = req.payload._id;
-    book.deleted = null;
+    // book.addedBy = req.book._id;
+    // book.deleted = null;
     book.save(function(err, result) {
       if(err) return next(err);
-      if(!result) return next("Could not create the object. Please check all fields.");
+      // if(!result) return next("Could not create the object. Please check all fields.");
       // result.addedBy = req.payload.username;
       res.send(result);
     });
 });
 
-router.get('/:id', function(req,res,next){
-  Book
-  .findOne({_id: req.params.id},
-    function(err,result){
-      if(err) return next(err);
-      res.send(req.book);
+// router.get('/:id', function(req,res,next){
+//   Book
+//   .findOne({_id: req.params.id},
+//     function(err,result){
+//       if(err) return next(err);
+//       res.send(req.book);
+//
+//     });
+// });
 
-    });
-});
-router.put('/:id', function(req,res,next){
-  Book.findOneAndUpdate({_id: req.params.id},req.body,
+// Find a particular book, edit and updated book
+router.put('/', function(req,res,next){
+  Book.update({_id: req.body.IDofBooktoEdit},req.body.EditedBook,
   function(err,result){
   if(err) return next(err);
   if(!result) return next("Could not create the object. Please check all fields.");
@@ -39,19 +41,20 @@ router.put('/:id', function(req,res,next){
 });
 });
 
+//Display all books
 router.get('/', function(req,res,next){
   Book
   .find({})
-  .select('title desc genre author img tags addedBy')
-  .populate('addedBy', 'username')
+  // .select('title desc genre author img tags addedBy')
+  // .populate('addedBy', 'username')
   .exec(function(err,result){
     if(err) return next(err);
     res.send(result);
   });
 });
 
-router.param('id', function(req,res,next,id){
-  Book.findOne({_id:id}, function(err,result){
+router.param('id', function(req,res,next,BookId){
+  Book.findOne({_id: BookId}, function(err,result){
     if(err) return next(err);
     if(!result) return next({err: "couldnt find it"});
     req.book = result;

@@ -98,13 +98,13 @@
     //    o.status._id = user._id;
     //  }
 
-	// 	 function getAuth(){
-	// 		 return{
-	// 			 headers: {
-	// 				 Authorization: "Bearer " + localStorage.getItem('token'),
-	// 			 }
-	// 		 };
-	// 	 }
+		 function getAuth(){
+			 return{
+				 headers: {
+					 Authorization: "Bearer " + localStorage.getItem('token'),
+				 }
+			 };
+		 }
      return o;
 
   }

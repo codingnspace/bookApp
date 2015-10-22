@@ -12,9 +12,10 @@
 vm.createBook = function(){
   HomeFactory.createBook(vm.newBook).then(function(res){
 		$state.go('Home');
-}, function(res){
-		vm.newBook = res;
-  });
-};
-	}
+// }, function(res){
+// 		vm.newBook = res;
+//   });
+});
+	};
+}
 })();

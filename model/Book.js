@@ -10,6 +10,10 @@ var BookSchema = new mongoose.Schema({
   img: String,
   tags: String,
   deleted: Date,
+  comments: [{
+    comment: {type:String},
+    contributer: {type: mongoose.Schema.Types.OnjectId, ref: 'User'}
+  }],
 });
 
 mongoose.model('Book', BookSchema);

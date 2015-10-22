@@ -1,5 +1,5 @@
 <div ng-controller="EditBookController as vm">
-  <form ng-submit="vm.editBook()">
+  <form ng-submit="vm.editBook(vm.book.id)">
   <md-content >
     <md-input-container>
       <label>Title</label>
@@ -21,8 +21,8 @@
       <label>Image</label>
       <input ng-model="vm.book.img" >
     </md-input-container><br><br>
-    <!-- <md-input-container>
-    <label>Tags</label>
+    <md-input-container>
+    <!-- <label>Tags</label>
        <md-chips
            ng-model="vm.book.tags"
            readonly="vm.book.readonly"

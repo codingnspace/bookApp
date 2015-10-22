@@ -5,17 +5,18 @@
 
   function EditBookController($state, $stateParams, HomeFactory){
     var vm = this;
+    vm.book = {};
 
-
+    vm.book.id = $stateParams.BookId;
     // if(!$stateParams.id) $state.go('Home');
-    HomeFactory.getBookById($stateParams.id).then(function(res){
-      vm.book = res;
-    });
+    // HomeFactory.getBookById($stateParams.id).then(function(res){
+    //   vm.booked = res;
+    // });
 
-    vm.editBook = function(){
+    vm.editBook = function(BookId){
       // vm.book.tags = [];
-
-      HomeFactory.putBook(vm.book).then(function(){
+      // console.log(BookId);
+      HomeFactory.editBook({IDofBooktoEdit: BookId, EditedBook: vm.book}).then(function(){
         $state.go('Home');
       });
     };
