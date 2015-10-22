@@ -11,7 +11,8 @@ var mongoose = require('mongoose');
 require('./model/User');
 require('./model/Book');
 require('./config/passport');
-//mongodb://pearl:1234@ds043714.mongolab.com:43714/bookapp
+
+
 mongoose.connect('process.env.MONGO_STRING');
 
 app.set('views', path.join(__dirname, 'views'));
