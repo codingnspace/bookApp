@@ -8,6 +8,7 @@
 
 HomeFactory.getBooks().then(function(res){
 	vm.books = res;
+	console.log("whats up");
 });
 
 

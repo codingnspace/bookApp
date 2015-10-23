@@ -20,7 +20,7 @@ HomeFactory.getBookById($stateParams.id).then(function(res){
 vm.addReview = function(){
 	HomeFactory.addReview(vm.newReview, $stateParams.id)
 	.then(function(res){
-		// vm.readmore.reviews.push(res);
+		vm.readmore.push(res);
 
 	});
 };

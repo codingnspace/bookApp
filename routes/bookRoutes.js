@@ -11,7 +11,7 @@ var auth = jwt({
 });
 
 router.param('id', function(req,res,next,id){
-  console.log(id);
+  // console.log(id);
   Book.findOne({_id: id}, function(err,result){
     if(err) return next(err);
     if(!result) return next({err: "couldnt find it"});
@@ -36,18 +36,19 @@ router.post('/', auth, function(req, res, next) {
 router.post('/:id/review', auth, function(req,res,next){
   console.log(req.body);
   var review = {
-    reviewer: req.payload._id,
+    reviewer: req.payload.username,
     rating: req.body.reviews.rating,
     comment: req.body.reviews.comment,
-    // postedOn: new Date();
-  };
+    // postedOn: req.body.reviews.postedOn.new Date()
+    };
 console.log(req.body.reviews.rating , "bookroutes");
 // console.log(req.book.reviews);
  req.book.reviews.push(review);
  // console.log(req.book.reviews);
 
  req.book.save(function(err, result){
-   res.send(result);
+   console.log(req.book);
+   res.send(req.book);
  });
 });
 
@@ -63,7 +64,7 @@ router.get('/:id', function(req,res,next){
 });
 
 // Find a particular book, edit and updated book
-router.put('/:id', function(req,res,next){
+router.put('/:id', auth,function(req,res,next){
   // console.log("made it to route file (for edit)");
   Book.update({_id: req.params.id},req.body,
   function(err,result){
