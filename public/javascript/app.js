@@ -5,7 +5,7 @@
 	function config($stateProvider, $urlRouterProvider,$httpProvider) {
 		$stateProvider.state('Home',{
 			url: '/',
-			templateUrl: 'views/home.html'
+			templateUrl: 'views/Home.html'
 		}).state('Create',{
 			url: '/create',
 			templateUrl: 'views/create.html'
