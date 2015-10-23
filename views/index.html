@@ -10,11 +10,11 @@
 <body>
 	<div ng-controller="GlobalController as nav">
 		<div layout="row" layout-padding class="bg-dark-blue nav-dark" id="nav" layout-align="space-between center">
-	<div flex="70">
+	<div >
 		<md-button class=" nav-but"  ui-sref="Home">Home</md-button>
 	  <md-button class="nav-but" ng-show="nav.status.username" ui-sref="Create">Add a Book</md-button>
 	</div>
-	<div flex class="nav-buttons" ng-show="!nav.status.username">
+	<div  class="nav-buttons" ng-show="!nav.status.username">
 	    <md-button class="md-raised md-primary" id="prim" ui-sref="Login">Login</md-button>
 	    <md-button class="md-raised md-warn" id="prim2" ui-sref="Register">Register</md-button>
 	</div>
