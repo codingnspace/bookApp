@@ -13,7 +13,7 @@ require('./model/Book');
 require('./config/passport');
 
 
-mongoose.connect('process.env.MONGO_STRING');
+mongoose.connect(process.env.MONGO_STRING);
 
 app.set('views', path.join(__dirname, 'views'));
 //set the view engine that will render HTML from the server to the client
