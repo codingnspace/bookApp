@@ -1,5 +1,6 @@
 <div ng-controller="HomeController as vm">
-    <md-content class="md-padding" ng-repeat="b in vm.books" >
+  <div ng-repeat="b in vm.books" >
+    <md-content class="md-padding" flex="35">
       <md-card >
         <img ng-src="{{b.img}}" class="md-card-image" alt="{{b.title}}" title="{{b.title}}">
         <md-card-content>
@@ -43,4 +44,5 @@
       </md-card>
       <br/>
     </md-content>
+  </div>
 </div>
