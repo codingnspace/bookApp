@@ -14,13 +14,13 @@
 			templateUrl: 'views/register.html'
 		}).state("Login",{
 			url: '/login',
-			templateUrl: '/views/login.html'
+			templateUrl: 'views/login.html'
 		}).state('Profile',{
 			url: '/profile/:id',
 			templateUrl: 'views/profile.html'
 		}).state('Edit',{
 			url: '/edit/:id',
-			templateUrl: '/views/edit.html'
+			templateUrl: 'views/edit.html'
 		}).state('ReadMore',{
 			url: '/readmore/:id',
 			templateUrl: 'views/readmore.html'
