@@ -59,7 +59,8 @@
             {{r.postedOn}}<br>
             {{r.comment}}
           </p>
-
+          <md-button ui-sref="Edit({BookId: vm.readmore._id})">Edit</md-button>
+          <md-button ng-click="vm.deleteBook(b)">Delete</md-button>
         </div>
       </div>
     </md-content>
