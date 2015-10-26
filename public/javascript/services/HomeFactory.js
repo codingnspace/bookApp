@@ -6,14 +6,23 @@
 
 	function HomeFactory($http, $q) {
 		var o = {};
-
+o.reqList = function(){
+	console.log(this.responseText);
+};
 o.createBook = function(book){
-	var q = $q.defer();
-	$http.post('/api/book', book)
-	.then(function(){
-		q.resolve();
-	});
-	return q.promise;
+
+	var oReq = new XMLHttpRequest();
+	// oReq.addEventListener("load", o.reqList);
+	console.log("before open");
+	oReq.open("GET", "https://www.goodreads.com/search/index.xml?q="+book.title+"&key=0117HYDR2LKO90Ef7ziXQ");
+console.log("before send");
+	oReq.send();
+	// var q = $q.defer();
+	// $http.post('/api/book', book)
+	// .then(function(){
+	// 	q.resolve();
+	// });
+	// return q.promise;
 };
 
 o.getBookById = function(BookId){

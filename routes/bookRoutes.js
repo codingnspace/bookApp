@@ -21,17 +21,20 @@ router.param('id', function(req,res,next,id){
 });
 
 // Add a new book. user must be logged in
-router.post('/', auth, function(req, res, next) {
-    var book = new Book(req.body);
-    // book.addedBy = req.body._id;
-    // book.deleted = null;
-    book.save(function(err, result) {
-      if(err) return next(err);
-      if(!result) return next("Could not create the object. Please check all fields.");
-      result.addedBy = req.payload.username;
-      res.send(result);
-    });
-});
+// router.post('/', auth, function(req, res, next) {
+//     var book = new Book(req.body);
+//     // book.addedBy = req.body._id;
+//     // book.deleted = null;
+//     book.save(function(err, result) {
+//       if(err) return next(err);
+//       if(!result) return next("Could not create the object. Please check all fields.");
+//       result.addedBy = req.payload.username;
+//       res.send(result);
+//     });
+// });
+
+
+
 
 router.post('/:id/review', auth, function(req,res,next){
   console.log(req.body);

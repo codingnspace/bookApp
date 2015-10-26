@@ -35,6 +35,7 @@ app.use(passport.initialize());
 
 var bookRoutes = require('./routes/bookRoutes');
 var userRoutes = require('./routes/userRoutes');
+var goodReadRoutes = require('./routes/goodReadRoutes');
 
 //on homepage load, render the index page
 app.get('/', function(req, res) {
@@ -43,6 +44,7 @@ app.get('/', function(req, res) {
 
 app.use('/api/user', userRoutes);
 app.use('/api/book', bookRoutes);
+app.use('https://www.goodreads.com', goodReadRoutes);
 
 var server = app.listen(port, function() {
 	var host = server.address().address;

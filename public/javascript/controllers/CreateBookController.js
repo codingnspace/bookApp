@@ -10,12 +10,22 @@
     // vm.newBook.tags = [];
 
 vm.createBook = function(){
-  HomeFactory.createBook(vm.newBook).then(function(res){
-		$state.go('Home');
-// }, function(res){
+	console.log("hmm");
+  HomeFactory.createBook(vm.newBook);
+
+// , function(res){
 // 		vm.newBook = res;
-//   });
-});
-	};
+  };
+// HomeFactory.get(vm.createBook);
+
+// vm.createBook = function(data) {
+//
+//         vm.newBook = data;
+// 				console.log(data);
+//     };
+
+
+
+	// };
 }
 })();
